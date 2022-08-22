@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: devmultitask.OsMelhoresSeriados
+Class-Path: lib/ojdbc10-19.15.0.0.1.jar
+
