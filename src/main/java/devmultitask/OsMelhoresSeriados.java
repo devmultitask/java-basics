@@ -1,6 +1,7 @@
 package devmultitask;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class OsMelhoresSeriados {
 
@@ -21,6 +22,12 @@ public class OsMelhoresSeriados {
 		/* TODO: gravar saida em texto */
 		
 		Repositorio repositorio = new Repositorio();
-		repositorio.mostraSeries();
+		List<String> seriados = repositorio.mostraSeries();
+		
+		String output = "seriado #%d: %s";
+		int count = 0;
+		for (String seriado : seriados) {
+		 System.out.println(String.format(output, ++count, seriado));
+		} 
 	}
 }

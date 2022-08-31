@@ -5,28 +5,24 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-/*
- * TODO: rever responsabilidades da classe Repositorio
- */
+import java.util.ArrayList;
+import java.util.List;
+ 
 public class Repositorio {
 
-	public void mostraSeries() {
+	public List<String> mostraSeries() {
 
 		Connection conn = getConnection();
+		List<String> seriados = new ArrayList<String>();
 		try {
 			String sql = "SELECT NOME FROM ULTIMAS_SERIES";
 
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
-
-			int count = 0;
-
+ 
 			while (result.next()) {
 				String name = result.getString(1);
-
-				String output = "Seriado #%d: %s";
-				System.out.println(String.format(output, ++count, name));
+				seriados.add(name);
 			}
 
 		} catch (SQLException ex) {
@@ -40,6 +36,7 @@ public class Repositorio {
 				ex.printStackTrace();
 			}
 		}
+		return seriados;
 	}
 
 	private Connection getConnection() {
@@ -48,8 +45,8 @@ public class Repositorio {
 
 		try {
 			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String username = "fb";
-			String password = "fb";
+			String username = "devmultitask";
+			String password = "devmultitask";
 			conn = DriverManager.getConnection(dbURL, username, password);
 			if (conn != null) {
 				System.out.println("Conectado ao Oracle");
