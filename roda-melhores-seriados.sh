@@ -2,5 +2,5 @@
 
 cp -av lib/ target/classes/ -v
 
-java -jar target/classes/melhores.jar
+java -jar target/classes/melhores.jar 5
 
