@@ -1,35 +1,47 @@
 package devmultitask;
 
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 public class OsMelhoresSeriados {
 
 	public static void main(String[] args) throws SQLException {
 
+		Instant inicio = Instant.now();
+		
 		System.out.println(" **** Os Melhores Seriados **** ");
 
 		boolean exibirTodos = false;
 
-		System.out.println("tamanho do args = " + args.length);
-
 		if (args.length == 0) {
-			System.out.println("exibir todos");
+			if (SystemFlags.DEBUG)
+			 System.out.println("exibir todos");
 			exibirTodos = true;
-		} else if (args.length > 1) {
+		} else if (args.length > 1 && args[1].equalsIgnoreCase("debug")) {
+			SystemFlags.DEBUG=true;
+		} else if (args.length > 2) {
 			System.out.println("argumentos inválidos");
 			System.exit(0);
 		}
 
-		for (String arg : args) {
+		if (SystemFlags.DEBUG) 
+		System.out.println("tamanho do args = " + args.length);
+		
+		if (SystemFlags.DEBUG) {
+		 for (String arg : args) {
 			System.out.println(arg);
+		 }
 		}
 
 		int quantidade = 0;
 		if (!exibirTodos) {
 			quantidade = Integer.parseInt(args[0]);
 		}
-		System.out.println("quantidade = " + quantidade);
+		
+		if (SystemFlags.DEBUG)
+		 System.out.println("quantidade = " + quantidade);
 
 		/*
 		 * TODO: tratar parâmetro para quantidade de seriados (se não informado, exibir
@@ -47,7 +59,7 @@ public class OsMelhoresSeriados {
 		/* TODO: gravar saida em texto */
 
 		Repositorio repositorio = new Repositorio();
-		List<String> seriados = repositorio.mostraSeries();
+		List<String> seriados = repositorio.mostraSeries(quantidade);
 
 		String output = "seriado #%d: %s";
 		int count = 0;
@@ -62,5 +74,10 @@ public class OsMelhoresSeriados {
 				System.out.println(String.format(output, ++count, seriado));
 			}
 		}
+		Instant fim = Instant.now();
+		long duracao = Duration.between(inicio, fim).toMillis();
+		if (SystemFlags.DEBUG)
+		 System.out.println("Tempo de processamento: "+duracao+"ms");
+		
 	}
 }
