@@ -10,20 +10,21 @@ import java.util.List;
  
 public class Repositorio {
 
-	public List<String> mostraSeries(int quantidade) {
+	public List<Seriado> mostraSeries(int quantidade) {
 
 		Connection conn = getConnection();
-		List<String> seriados = new ArrayList<String>();
+		List<Seriado> seriados = new ArrayList<Seriado>();
 		try {
-			String sql = "SELECT NOME FROM FILMES WHERE rownum <= ?";
+			String sql = "SELECT NM_SERIE ,ANO  FROM SERIE WHERE rownum <= ?";
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, quantidade);
 			ResultSet result = statement.executeQuery();
  
 			while (result.next()) {
-				String name = result.getString(1);
-				seriados.add(name);
+				String nome = result.getString(1);
+				int ano = result.getInt(2);
+				seriados.add( new Seriado(ano,nome));
 			}
 
 		} catch (SQLException ex) {

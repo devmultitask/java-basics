@@ -3,6 +3,7 @@ package devmultitask;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 
 public class OsMelhoresSeriados {
@@ -43,15 +44,6 @@ public class OsMelhoresSeriados {
 		if (SystemFlags.DEBUG)
 		 System.out.println("quantidade = " + quantidade);
 
-		/*
-		 * TODO: tratar parâmetro para quantidade de seriados (se não informado, exibir
-		 * todos)
-		 */
-
-		/* TODO: usar listas para controlar o resultado */
-
-		/* TODO: orderar o resultado */
-
 		/* TODO: tratar erro de banco */
 
 		/* TODO: melhorar o empacotamento */
@@ -59,19 +51,21 @@ public class OsMelhoresSeriados {
 		/* TODO: gravar saida em texto */
 
 		Repositorio repositorio = new Repositorio();
-		List<String> seriados = repositorio.mostraSeries(quantidade);
+		List<Seriado> seriados = repositorio.mostraSeries(quantidade);
 
-		String output = "seriado #%d: %s";
+		Collections.sort(seriados);
+		
+		String output = "seriado #%d: %s - %d";
 		int count = 0;
 
 		if (exibirTodos) {
-			for (String seriado : seriados) {
-				System.out.println(String.format(output, ++count, seriado));
+			for (Seriado seriado : seriados) {
+				System.out.println(String.format(output, ++count, seriado.getNome(), seriado.getAno()));
 			}
 		} else {
 			while (count < quantidade) {
-				String seriado = seriados.get(count);
-				System.out.println(String.format(output, ++count, seriado));
+				Seriado seriado = seriados.get(count);
+				System.out.println(String.format(output, ++count, seriado.getNome(), seriado.getAno()));
 			}
 		}
 		Instant fim = Instant.now();

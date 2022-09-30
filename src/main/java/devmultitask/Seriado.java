@@ -1,12 +1,12 @@
 package devmultitask;
 
-public class Seriado {
+public class Seriado implements Comparable<Seriado> {
 	
-	private int ano;
+	private Integer ano;
 	private String nome;
 	private String categoria;
 
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
 
@@ -21,6 +21,11 @@ public class Seriado {
 	public Seriado() {
 	}
 
+	public Seriado(int ano, String nome) {
+		this.ano = ano;
+		this.nome = nome; 
+	}
+	
 	public Seriado(int ano, String nome, String categoria) {
 		this.ano = ano;
 		this.nome = nome;
@@ -30,5 +35,18 @@ public class Seriado {
 	@Override
 	public String toString() {
 		return nome + " (" + ano + ") - " + categoria;
+	}
+
+	@Override
+	public int compareTo(Seriado outroSeriado) {
+		
+//		int comparador = this.getNome().compareTo(outroSeriado.getNome());
+//		int comparador = this.getAno().compareTo(outroSeriado.getAno());
+		int comparador = outroSeriado.getAno().compareTo(this.getAno());
+		
+		if (SystemFlags.DEBUG)
+			 System.out.println("comparando: ["+this+ "] com [" + outroSeriado +"]: "+comparador);
+		
+		return comparador;
 	}
 }
