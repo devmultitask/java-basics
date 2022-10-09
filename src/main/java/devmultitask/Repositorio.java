@@ -10,7 +10,7 @@ import java.util.List;
  
 public class Repositorio {
 
-	public List<Seriado> mostraSeries(int quantidade) {
+	public List<Seriado> mostraSeries(int quantidade) throws DatabaseException {
 
 		Connection conn = getConnection();
 		List<Seriado> seriados = new ArrayList<Seriado>();
@@ -27,21 +27,24 @@ public class Repositorio {
 				seriados.add( new Seriado(ano,nome));
 			}
 
-		} catch (SQLException ex) {
-			ex.printStackTrace();
+		} catch (Exception ex) {
+			if (SystemFlags.DEBUG)
+			 ex.printStackTrace();
+			throw new DatabaseException();
 		} finally {
 			try {
 				if (conn != null && !conn.isClosed()) {
 					conn.close();
 				}
 			} catch (SQLException ex) {
-				ex.printStackTrace();
+				if (SystemFlags.DEBUG)
+				 ex.printStackTrace();
 			}
 		}
 		return seriados;
 	}
 
-	private Connection getConnection() {
+	private Connection getConnection() throws DatabaseException {
 
 		Connection conn = null;
 
@@ -54,8 +57,10 @@ public class Repositorio {
 				if (SystemFlags.DEBUG)
 				 System.out.println("Conectado ao Oracle");
 			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
+		} catch (Exception ex) {
+			if (SystemFlags.DEBUG)
+			 ex.printStackTrace();
+			throw new DatabaseException();
 		}
 		return conn;
 	}

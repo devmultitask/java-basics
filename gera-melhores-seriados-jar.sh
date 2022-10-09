@@ -1,9 +1,12 @@
 #!/bin/bash
 echo "cria Jar"
 
-mvn clean compiler:compile
+#mvn clean compiler:compile
 
-cp MANIFEST.MF target/classes/
-cd target/classes/
+#cp MANIFEST.MF target/classes/
 
-jar cmvf MANIFEST.MF  melhores.jar  .
+#cd target/classes/
+
+#jar cmvf MANIFEST.MF  melhores.jar  .
+
+mvn clean package
