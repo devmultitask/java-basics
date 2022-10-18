@@ -1,5 +1,6 @@
 package devmultitask;
 
+import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -7,11 +8,18 @@ import java.util.List;
 
 public class OsMelhoresSeriados {
 
+	private static final String ARQUIVO="melhores-series.txt";
+	
 	public static void main(String[] args)  {
 
 		Instant inicio = Instant.now();
+		Path caminhoDoArquivo = Path.of(ARQUIVO);
 		
-		System.out.println(" **** Os Melhores Seriados **** ");
+		FileUtil.deleteFile(caminhoDoArquivo);
+		
+		String titulo = " **** Os Melhores Seriados **** \n";
+		System.out.print(titulo);
+		FileUtil.writeFile(caminhoDoArquivo,titulo);
 
 		boolean exibirTodos = false;
 
@@ -42,9 +50,7 @@ public class OsMelhoresSeriados {
 		
 		if (SystemFlags.DEBUG)
 		 System.out.println("quantidade = " + quantidade);
-    
-		/* TODO: gravar saida em texto */
-
+      
 		Repositorio repositorio = new Repositorio();
 		List<Seriado> seriados;
 		try {
@@ -57,13 +63,17 @@ public class OsMelhoresSeriados {
 			
 			if (exibirTodos) {
 				for (Seriado seriado : seriados) {
-					System.out.println(String.format(output, ++count, seriado.getNome(), seriado.getAno()));
+					String descSeriado = String.format(output, ++count, seriado.getNome(), seriado.getAno());
+					System.out.println(descSeriado);
+					FileUtil.writeFile(caminhoDoArquivo,descSeriado+"\n");
 				}
 			} else {
 				while (count < quantidade) {
 					if (count == seriados.size()) break;
 					Seriado seriado = seriados.get(count);
-					System.out.println(String.format(output, ++count, seriado.getNome(), seriado.getAno()));
+					String descSeriado = String.format(output, ++count, seriado.getNome(), seriado.getAno());
+					System.out.println(descSeriado);
+					FileUtil.writeFile(caminhoDoArquivo,descSeriado+"\n");
 				}
 			}
 		} catch (DatabaseException e) {
