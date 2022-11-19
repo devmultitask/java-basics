@@ -29,11 +29,11 @@ Vamos arrumar o projeto e aprender com os TODOs do projeto.
 
 ## Youtube
 
-[Parte 1](https://youtu.be/liSS2BLqB9c)
-[Parte 2](https://youtu.be/juJPSy4RZd0)
-[Parte 3](https://youtu.be/OpdRdM-Nw9k)
-[Parte 4](https://youtu.be/bOjzpUf5fhQ)
-[Parte 5](https://youtu.be/PrnwODP7bnY)
-[Parte 6](https://youtu.be/MT0u53UxC4Y)
-[Parte 7](https://youtu.be/sbTDynf4NfM)
-[Parte 8](https://youtu.be/7KL8NbfKxWs)
+* [Parte 1](https://youtu.be/liSS2BLqB9c)
+* [Parte 2](https://youtu.be/juJPSy4RZd0)
+* [Parte 3](https://youtu.be/OpdRdM-Nw9k)
+* [Parte 4](https://youtu.be/bOjzpUf5fhQ)
+* [Parte 5](https://youtu.be/PrnwODP7bnY)
+* [Parte 6](https://youtu.be/MT0u53UxC4Y)
+* [Parte 7](https://youtu.be/sbTDynf4NfM)
+* [Parte 8](https://youtu.be/7KL8NbfKxWs)
