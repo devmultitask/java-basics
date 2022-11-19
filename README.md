@@ -29,6 +29,12 @@ Vamos arrumar o projeto e aprender com os TODOs do projeto.
 
 ## Youtube
 
+### Tudo junto
+
+* [Playlist](https://youtube.com/playlist?list=PL2XKkc9gm2WRVpqTxHTNpDhv1mu3GkFXr)
+
+### Por partes
+
 * [Parte 1](https://youtu.be/liSS2BLqB9c)
 * [Parte 2](https://youtu.be/juJPSy4RZd0)
 * [Parte 3](https://youtu.be/OpdRdM-Nw9k)
